@@ -1,15 +1,13 @@
-import React from 'react';
-import {Link} from 'react-router';
-import {connect} from 'react-redux';
+import React from 'react'
+import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {bindActionCreators} from 'redux';
-import {logoutAndRedirect} from '../actions';
+import {logoutAndRedirect} from '../actions'
+import './App.css'
 
 export class App extends React.Component {
 
     static propTypes = {
-
-        isAuthenticated: PropTypes.string,
+        isAuthenticated: PropTypes.bool,
         logoutAndRedirect: PropTypes.func.isRequired,
 
         children: PropTypes.node
@@ -22,34 +20,8 @@ export class App extends React.Component {
 
 
     render () {
-        return (
-            <div>
-                <nav className="navbar navbar-default">
-                    <div className="container">
-                        <div className="navbar-header">
-                            <Link className="navbar-brand" to="/">React Redux JWT Auth Example</Link>
-                        </div>
-                        <div id="navbar">
-                            <ul className="nav navbar-nav navbar-right">
-                                <li><Link to="/protected">Protected Content</Link></li>
-                                <li><Link to="/login">Login</Link></li>
-                                {this.props.isAuthenticated
-                                 ? <li><a href='#' onClick={this.handleLogoutClick}>Logout</a> </li>
-                                 : ''
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-                <div className='container'>
-                    <div className='row'>
-                        <div className='col-xs-12'>
-                            {this.props.children}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        return (            
+                <span>{this.props.children}</span>
         );
     }
 }

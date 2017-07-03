@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import '../views/LoggedInView.css';
 
-//import { Nav, Game, GamesList, GamesListTabs } from '../components';
 import { Nav } from '../components/Nav';
-import { Game } from '../components/Game';
 import { GamesList } from '../components/GamesList';
 import { GamesListTabs } from '../components/GamesListTabs';
-import '../../node_modules/bulma/css/bulma.css';
+import 'bulma/css/bulma.css';
 
 class GamesPage extends Component {
   render(){

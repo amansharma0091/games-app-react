@@ -2,7 +2,6 @@ import fetch from 'isomorphic-fetch';
 import { checkHttpStatus, parseJSON } from '../utils';
 import jwtDecode from 'jwt-decode';
 import { browserHistory } from 'react-router'
-import * as types from './types';
 
 import { LOGIN_USER_REQUEST, LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS, LOGOUT_USER,
 		 FETCH_PROTECTED_DATA_REQUEST, RECEIVE_PROTECTED_DATA, RECEIVE_GAMES_LIST, RECEIVE_GAMES_LIST_REQUEST } from '../constants';
@@ -59,6 +58,7 @@ export function logoutAndRedirect() {
 }
 
 export function loginUser(username, password, redirect="/") {
+  console.log(username+","+password)
     return function(dispatch) {
         dispatch(loginUserRequest());
         return fetch(`${baseUrl}/auth`, {
@@ -67,7 +67,7 @@ export function loginUser(username, password, redirect="/") {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-                body: JSON.stringify({username: "username", password: "password"})
+                body: JSON.stringify({username: username, password: password})
             })
             .then(checkHttpStatus)
             .then(parseJSON)

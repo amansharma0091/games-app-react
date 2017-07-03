@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions';
+import './LoginPage.css';
 
  class LoginPage extends Component {
 
   static propTypes = {
 
-    isAuthenticating: PropTypes.string,
+    isAuthenticating: PropTypes.bool,
     statusText: PropTypes.string,
     username : PropTypes.string,
     password : PropTypes.string
@@ -30,39 +31,27 @@ import { loginUser } from '../actions';
       this.props.loginUser(this.state.username, this.state.password, '/games');
   }
 
-  onUserChange(value){
-    this.setState({username : value});
+  onUserChange(event){
+    this.setState({username : event.target.value});
   }
 
-  onPasswordChange(value){
-    this.setState({password : value});
+  onPasswordChange(event){
+    this.setState({password : event.target.value});
   }
 
   render () {
     return (
-      <div className='col-xs-12 col-md-6 col-md-offset-3'>
-        <h3>Log in to view protected content!</h3>
-        <p>Hint: hello@test.com / test</p>
-        {this.props.statusText ? <div className='alert alert-info'>{this.props.statusText}</div> : ''}
-        <form role='form'>
-        <div className='form-group'>
-            <input type='text'
-              className='form-control input-lg'
-              onChange={this.onUserChange}
-              placeholder='Username' />
-            </div>
-          <div className='form-group'>
-            <input type='password'
-              className='form-control input-lg'
-              onChange={this.onPasswordChange}
-              placeholder='Password' />
-          </div>
-          <button type='submit'
-            className='btn btn-lg'
-            disabled={this.props.isAuthenticating}
-            onClick={this.login}>Submit</button>
-      </form>
-    </div>
+
+      <div className="login">
+        <h1>Login</h1>
+          <form method="post">
+            <input type="text" name="u" placeholder="Username" required="required" onChange={this.onUserChange}/>
+            <input type="password" name="p" placeholder="Password" required="required" onChange={this.onPasswordChange}/>
+             <button type="submit" className="btn btn-primary btn-block btn-large" disabled={this.props.isAuthenticating} onClick={this.login}>Let me in.</button>
+          </form>
+          <div>{this.props.statusText ? <div className='alert alert-info'>{this.props.statusText}</div> : ''}</div>
+      </div>
+
     );
   }
 }
