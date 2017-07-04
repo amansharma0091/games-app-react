@@ -3,18 +3,15 @@ import { checkHttpStatus, parseJSON } from '../utils';
 import jwtDecode from 'jwt-decode';
 import { browserHistory } from 'react-router'
 
+import { CALL_API, Schemas } from '../middleware/api'
+
 import { LOGIN_USER_REQUEST, LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS, LOGOUT_USER,
-		 FETCH_PROTECTED_DATA_REQUEST, RECEIVE_PROTECTED_DATA, RECEIVE_GAMES_LIST, RECEIVE_GAMES_LIST_REQUEST } from '../constants';
+		 FETCH_PROTECTED_DATA_REQUEST, RECEIVE_PROTECTED_DATA,
+      RECEIVE_GAMES_REQUEST, RECEIVE_GAMES_SUCCESS, RECEIVE_GAMES_FAILURE } from '../constants';
 
 
 const baseUrl = "https://games-api-dev.herokuapp.com/api";
 
-export function requestPosts(){
-	return {
-    type: RECEIVE_GAMES_LIST,
-  }
-
-}
 
 export function loginUserSuccess(token) {
   localStorage.setItem('token', token);
@@ -91,59 +88,20 @@ export function loginUser(username, password, redirect="/") {
     }
 }
 
-function receivePosts(json) {
-  return {
-    type: RECEIVE_GAMES_LIST,
-    games: json,
-    receivedAt: Date.now()
+
+
+
+const fetchGames = (token) => ({
+  [CALL_API]: {
+    types: [ RECEIVE_GAMES_REQUEST, RECEIVE_GAMES_SUCCESS, RECEIVE_GAMES_FAILURE ],
+    endpoint: `findall`,
+    schema: Schemas.GAME_ARRAY,
+    token: token
   }
-}
-
-function fetchAllGames() {
-  return dispatch => {
-    dispatch(requestPosts())
-    return fetch(`${baseUrl}/findall`)
-      .then(response => response.json())
-      .then(json => dispatch(receivePosts(json)))
-  }
-}
+})
 
 
-export function receiveProtectedData(data) {
-    return {
-        type: RECEIVE_PROTECTED_DATA,
-        payload: {
-            data: data
-        }
-    }
-}
-
-export function fetchProtectedDataRequest() {
-  return {
-    type: FETCH_PROTECTED_DATA_REQUEST
-  }
-}
-
-export function fetchProtectedData(token) {
-
-    return (dispatch, state) => {
-        dispatch(fetchProtectedDataRequest());
-        return fetch('http://localhost:3000/getData/', {
-                credentials: 'include',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-            .then(checkHttpStatus)
-            .then(parseJSON)
-            .then(response => {
-                dispatch(receiveProtectedData(response.data));
-            })
-            .catch(error => {
-                if(error.response.status === 401) {
-                  dispatch(loginUserFailure(error));
-                  // dispatch(pushState(null, '/login'));
-                }
-            })
-       }
+export const loadGames = (token) => (dispatch, getState) => {
+  console.log("loading games" +token)
+  return dispatch(fetchGames(token))
 }

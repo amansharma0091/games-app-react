@@ -1,12 +1,29 @@
 import React, { Component } from 'react'
-import '../views/LoggedInView.css';
+import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 
-import { Nav } from '../components/Nav';
-import { GamesList } from '../components/GamesList';
-import { GamesListTabs } from '../components/GamesListTabs';
-import 'bulma/css/bulma.css';
+import { Nav } from '../components/Nav'
+import { GamesList } from '../components/GamesList'
+import { GamesListTabs } from '../components/GamesListTabs'
+
+import { loadGames } from '../actions'
+import 'bulma/css/bulma.css'
+import '../views/LoggedInView.css'
 
 class GamesPage extends Component {
+
+  static propTypes = {
+    isFailure   : PropTypes.bool,
+    isFetching  : PropTypes.bool,
+    data        : PropTypes.string,
+    token       : PropTypes.string,
+    loadGames   : PropTypes.func.isRequired
+  }
+
+  componentWillMount() {
+    this.props.loadGames(this.props.token)
+  }
+
   render(){
     const games = [
       {
@@ -23,7 +40,7 @@ class GamesPage extends Component {
         genre : "Platformer",
         score : 9
       }
-    ];
+    ]
 
     return(
       <div className="container" style={{"marginTop":"0px !important"}}>
@@ -31,9 +48,18 @@ class GamesPage extends Component {
         <GamesListTabs />
         <GamesList games={games}/>
       </div>
-    );
+    )
       
   }
 }
 
-export default GamesPage;
+function mapStateToProps(state){
+return  {
+    isFailure   : state.data.isFailure,
+    isFetching  : state.data.isFetching,
+    data        : state.data.data,
+    token       : state.auth.token
+  }
+}
+
+export default connect(mapStateToProps, { loadGames })(GamesPage)
