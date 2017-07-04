@@ -15,38 +15,25 @@ class GamesPage extends Component {
   static propTypes = {
     isFailure   : PropTypes.bool,
     isFetching  : PropTypes.bool,
-    data        : PropTypes.string,
+    data        : PropTypes.object,
     token       : PropTypes.string,
-    loadGames   : PropTypes.func.isRequired
+    loadGames   : PropTypes.func.isRequired,
   }
 
   componentWillMount() {
     this.props.loadGames(this.props.token)
   }
 
+
   render(){
-    const games = [
-      {
-        id : 1,
-        title: "LittleBigPlanet PS Vita",
-        platform : "PlayStation Vita",
-        genre : "Platformer",
-        score : 9
-      },
-      {
-        id : 2,
-        title: "LittleBigPlanet PS Vita",
-        platform : "PlayStation Vita",
-        genre : "Platformer",
-        score : 9
-      }
-    ]
+    
+    const gems = this.props.data ? Object.keys(this.props.data.games).map(val => this.props.data.games[val]) : [];
 
     return(
       <div className="container" style={{"marginTop":"0px !important"}}>
         <Nav />
         <GamesListTabs />
-        <GamesList games={games}/>
+        <GamesList games={gems}/>
       </div>
     )
       
@@ -54,11 +41,14 @@ class GamesPage extends Component {
 }
 
 function mapStateToProps(state){
+
 return  {
+
     isFailure   : state.data.isFailure,
     isFetching  : state.data.isFetching,
     data        : state.data.data,
     token       : state.auth.token
+
   }
 }
 

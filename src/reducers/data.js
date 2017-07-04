@@ -14,10 +14,9 @@ export default createReducer(initialState, {
         });
     },
     [RECEIVE_GAMES_SUCCESS]: (state, payload) => {
-        console.log("payload "+JSON.stringify(payload))
         return Object.assign({}, state, {
             'isFetching': false,
-            'data' : payload.entities.games
+            'data' : payload.entities
         });
     },
     [RECEIVE_GAMES_FAILURE]: (state, payload) => {

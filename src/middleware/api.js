@@ -47,7 +47,9 @@ const callApi = (endpoint, token, schema) => {
         return result
         
       })
-    )
+    ).catch(error=>{
+      console.log("API CALL ERROR : "+JSON.stringify(error))
+    })
 }
 
 // We use this Normalizr schemas to transform API responses from a nested form
@@ -93,7 +95,10 @@ export const CALL_API = 'Call API'
 // A Redux middleware that interprets actions with CALL_API info specified.
 // Performs the call and promises when such actions are dispatched.
 export default store => next => action => {
+
   const callAPI = action[CALL_API]
+
+  console.log("I was here!" + JSON.stringify(action))
 
   if (typeof callAPI === 'undefined') {
     return next(action)
