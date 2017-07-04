@@ -2,7 +2,10 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {logoutAndRedirect} from '../actions'
+
 import './App.css'
+import 'bulma/css/bulma.css'
+import 'font-awesome/css/font-awesome.min.css'
 
 export class App extends React.Component {
 

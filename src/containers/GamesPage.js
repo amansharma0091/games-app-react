@@ -7,7 +7,6 @@ import { GamesList } from '../components/GamesList'
 import { GamesListTabs } from '../components/GamesListTabs'
 
 import { loadGames } from '../actions'
-import 'bulma/css/bulma.css'
 import '../views/LoggedInView.css'
 
 class GamesPage extends Component {
