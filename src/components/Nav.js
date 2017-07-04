@@ -14,10 +14,18 @@ export class Nav extends Component{
     handleDiscoverQuery(e){
       const value = e.target.value
       this.setState({
-        value: value
+        value: value,
+        discoveries: ['loading...']
       })
       if(value.length>1)
         this.props.discoverQuery(value)
+    }
+
+    componentWillReceiveProps(newProps){
+
+      this.setState({
+        discoveries :  newProps.discoveries
+      })
     }
 
     render(){
@@ -40,9 +48,10 @@ export class Nav extends Component{
             <div className="nav-item">
               <Typeahead
                 value = {this.state.value}
-                options={this.props.discoveries}
+                options={this.state.discoveries}
                 maxVisible={5}
-                onKeyDown={this.handleDiscoverQuery}
+                onKeyUp={this.handleDiscoverQuery}
+                defaultValue='No matching results...'
               />
              </div>
           </div>
