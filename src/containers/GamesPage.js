@@ -6,7 +6,7 @@ import { Nav } from '../components/Nav'
 import { GamesList } from '../components/GamesList'
 import { GamesListTabs } from '../components/GamesListTabs'
 
-import { loadGames } from '../actions'
+import { loadGames, loadDiscoveries } from '../actions'
 import { SortType, SortOrder } from '../constants'
 import './GamesPage.css'
 
@@ -26,19 +26,50 @@ class GamesPage extends Component {
 
   componentWillReceiveProps(newProps) {
     this.setGems(newProps.data)
+
+    let discoveries = newProps.data ? Object.keys(newProps.data.discoveries).map(val => newProps.data.discoveries[val]) : []
+    discoveries = discoveries.map(d=>d.title)
+
+    this.setState({
+      discoveries : discoveries
+    })
   }
 
   constructor(props){
       super(props)
+
+      this.discoverQuery = this.discoverQuery.bind(this)
 
       this.sortByScore = this.sortByScore.bind(this)
       this.sortByName = this.sortByName.bind(this)
       this.sortByPlatform = this.sortByPlatform.bind(this)
 
       this.state = {
+        discoveries : [],
         gems : [],
         sortBy: { sortType: SortType.score, order: SortOrder.desc }
       }
+  }
+  
+  render(){
+
+    return(
+      <div className="container" style={{"marginTop":"0px !important"}}>
+        <Nav discoverQuery={this.discoverQuery} discoveries={this.state.discoveries}/>
+        <GamesListTabs sortBy={this.state.sortBy} sortByScore={this.sortByScore}
+           sortByPlatform={this.sortByPlatform} sortByName={this.sortByName} />
+        <GamesList games={this.state.gems}/>
+      </div>
+    )
+      
+  }
+
+  discoverQuery(value){
+    this.setState({
+      discoveries : ["loading..."]
+    })
+    this.props.loadDiscoveries( value, this.props.token )
+    
   }
 
   toggleOrdering(sortType){
@@ -97,20 +128,6 @@ class GamesPage extends Component {
     })  
   }
 
-  render(){
-
-    return(
-      <div className="container" style={{"marginTop":"0px !important"}}>
-        <Nav />
-        <GamesListTabs sortBy={this.state.sortBy} sortByScore={this.sortByScore}
-           sortByPlatform={this.sortByPlatform} sortByName={this.sortByName} />
-        <GamesList games={this.state.gems}/>
-      </div>
-    )
-      
-  }
-
-
   setGems(data){
     const gems = data ? Object.keys(data.games).map(val => data.games[val]) : []
     this.setState({
@@ -131,4 +148,4 @@ function mapStateToProps(state){
 
 }
 
-export default connect(mapStateToProps, { loadGames })(GamesPage)
+export default connect(mapStateToProps, { loadGames, loadDiscoveries })(GamesPage)

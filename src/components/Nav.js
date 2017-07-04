@@ -1,6 +1,25 @@
 import React, { Component } from 'react'
+import { Typeahead } from 'react-typeahead'
 
 export class Nav extends Component{
+
+    constructor(props){
+      super(props)
+      this.state = {
+        value : ''
+      }
+      this.handleDiscoverQuery = this.handleDiscoverQuery.bind(this)
+    }
+
+    handleDiscoverQuery(e){
+      const value = e.target.value
+      this.setState({
+        value: value
+      })
+      if(value.length>1)
+        this.props.discoverQuery(value)
+    }
+
     render(){
       return(
         <nav className="nav">
@@ -19,7 +38,12 @@ export class Nav extends Component{
 
           <div className="nav-center">
             <div className="nav-item">
-              <input placeholder="Discover Games..." className="input" />
+              <Typeahead
+                value = {this.state.value}
+                options={this.props.discoveries}
+                maxVisible={5}
+                onKeyDown={this.handleDiscoverQuery}
+              />
              </div>
           </div>
 

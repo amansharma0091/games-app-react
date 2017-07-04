@@ -5,9 +5,13 @@ import { browserHistory } from 'react-router'
 
 import { CALL_API, Schemas } from '../middleware/api'
 
-import { LOGIN_USER_REQUEST, LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS, LOGOUT_USER,
-		 FETCH_PROTECTED_DATA_REQUEST, RECEIVE_PROTECTED_DATA,
-      RECEIVE_GAMES_REQUEST, RECEIVE_GAMES_SUCCESS, RECEIVE_GAMES_FAILURE } from '../constants';
+import { 
+        LOGIN_USER_REQUEST, LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS, LOGOUT_USER,
+        RECEIVE_GAMES_REQUEST, RECEIVE_GAMES_SUCCESS, RECEIVE_GAMES_FAILURE,
+        DISCOVERIES_REQUEST, DISCOVERIES_SUCCESS, DISCOVERIES_FAILURE,
+        DATA_REQUEST, DATA_SUCCESS, DATA_FAILURE
+       } 
+from '../constants';
 
 
 const baseUrl = "https://games-api-dev.herokuapp.com/api";
@@ -50,7 +54,6 @@ export function logout() {
 export function logoutAndRedirect() {
     return (dispatch, state) => {
         dispatch(logout());
-        // dispatch(pushState(null, '/login'));
     }
 }
 
@@ -93,7 +96,7 @@ export function loginUser(username, password, redirect="/") {
 
 const fetchGames = (token) => ({
   [CALL_API]: {
-    types: [ RECEIVE_GAMES_REQUEST, RECEIVE_GAMES_SUCCESS, RECEIVE_GAMES_FAILURE ],
+    types: [ DATA_REQUEST, DATA_SUCCESS, DATA_FAILURE ],
     endpoint: `findall`,
     schema: Schemas.GAME_ARRAY,
     token: token
@@ -102,6 +105,18 @@ const fetchGames = (token) => ({
 
 
 export const loadGames = (token) => (dispatch, getState) => {
-  console.log("loading games" +token)
   return dispatch(fetchGames(token))
+}
+
+const fetchDiscoveries = (keyword, token) =>({
+  [CALL_API] : {
+    types: [ DATA_REQUEST, DATA_SUCCESS, DATA_FAILURE ],
+    endpoint: `/find?title=${keyword}`,
+    schema: Schemas.DISCOVERY_ARRAY,
+    token: token
+  }
+})
+
+export const loadDiscoveries = (keyword, token) => (dispatch, getState) => {
+  return dispatch(fetchDiscoveries(keyword, token))
 }

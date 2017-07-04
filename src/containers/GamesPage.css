@@ -47,3 +47,18 @@ typeahead-container ul .dropdown-header:hover{
 .nav-item input{
     width: 500px !important;
 }
+
+.typeahead .typeahead-selector{
+    position: absolute;
+    background-color: gainsboro;
+    width: 500px;
+    text-align: left;
+    line-height: 50px;
+}
+.typeahead li{
+    margin:2px;
+    padding-left:10px;
+}
+.typeahead li:hover{
+    background-color: ghostwhite;
+}

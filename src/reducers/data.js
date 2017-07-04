@@ -1,25 +1,28 @@
 import {createReducer} from '../utils';
-import {  RECEIVE_GAMES_REQUEST, RECEIVE_GAMES_SUCCESS, RECEIVE_GAMES_FAILURE  } from '../constants';
+import {  DATA_REQUEST, DATA_SUCCESS, DATA_FAILURE  } from '../constants';
 
 const initialState = {
     isFetching: false,
     isFailure: false,
-    data: null
+    data: {
+        games : [],
+        discoveries : []
+    }
 };
 
 export default createReducer(initialState, {
-    [RECEIVE_GAMES_REQUEST]: (state, payload) => {
+    [DATA_REQUEST]: (state, payload) => {
         return Object.assign({}, state, {
             'isFetching': true
         });
     },
-    [RECEIVE_GAMES_SUCCESS]: (state, payload) => {
+    [DATA_SUCCESS]: (state, payload) => {
         return Object.assign({}, state, {
             'isFetching': false,
-            'data' : payload.entities
+            'data' : Object.assign({}, state.data, payload ? payload.entities : null)
         });
     },
-    [RECEIVE_GAMES_FAILURE]: (state, payload) => {
+    [DATA_FAILURE]: (state, payload) => {
         return Object.assign({}, state, {
             'isFetching':false,
             'isFailure': true

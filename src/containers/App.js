@@ -24,7 +24,7 @@ export class App extends React.Component {
 
     render () {
         return (            
-                <span>{this.props.children}</span>
+            <span>{this.props.children}</span>
         );
     }
 }

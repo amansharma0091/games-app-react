@@ -79,6 +79,8 @@ const gameSchema = new schema.Entity('games', {}, {
   idAttribute: game => game.id
 })
 
+const discoverySchema = new schema.Entity("discoveries", {}, {})
+
 // Schemas for Github API responses.
 export const Schemas = {
   USER: userSchema,
@@ -86,7 +88,9 @@ export const Schemas = {
   REPO: repoSchema,
   REPO_ARRAY: [repoSchema],
   GAME: gameSchema,
-  GAME_ARRAY: [gameSchema]
+  GAME_ARRAY: [gameSchema],
+  DISCOVERY: discoverySchema,
+  DISCOVERY_ARRAY: [discoverySchema]
 }
 
 // Action key that carries API call info interpreted by this Redux middleware.
