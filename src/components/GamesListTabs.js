@@ -50,7 +50,7 @@ export class GamesListTabs extends React.Component{
       <div className="tabs is-right">
         <div style={{"borderBottom":"1px solid #ccc"}}>
           <p className="control">
-            <input className="input" type="text" placeholder="Find by name..." />
+            <input className="input" type="text" placeholder="Find by name..." onKeyUp={this.props.filterGems}/>
           </p>
         </div>
         <ul>

@@ -44,6 +44,8 @@ class GamesPage extends Component {
       this.sortByName = this.sortByName.bind(this)
       this.sortByPlatform = this.sortByPlatform.bind(this)
 
+      this.filterGems = this.filterGems.bind(this)
+
       this.state = {
         discoveries : [],
         gems : [],
@@ -57,7 +59,7 @@ class GamesPage extends Component {
       <div className="container" style={{"marginTop":"0px !important"}}>
         <Nav discoverQuery={this.discoverQuery} discoveries={this.state.discoveries}/>
         <GamesListTabs sortBy={this.state.sortBy} sortByScore={this.sortByScore}
-           sortByPlatform={this.sortByPlatform} sortByName={this.sortByName} />
+           sortByPlatform={this.sortByPlatform} sortByName={this.sortByName} filterGems={this.filterGems}/>
         <GamesList games={this.state.gems}/>
       </div>
     )
@@ -128,10 +130,19 @@ class GamesPage extends Component {
     })  
   }
 
+  filterGems(e){
+    const keyword = e.target.value.toLowerCase()
+    const gems = this.state.gemsCopy.filter((a) => (a.title.toLowerCase().indexOf(keyword)>-1))
+    this.setState({
+      gems: gems
+    })
+  }
+
   setGems(data){
     const gems = data ? Object.keys(data.games).map(val => data.games[val]) : []
     this.setState({
-      gems : gems
+      gems: gems,
+      gemsCopy: gems
     })
   }
 
