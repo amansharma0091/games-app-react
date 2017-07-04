@@ -1,7 +1,8 @@
 {
   "name": "games-app-react2",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage": "https:/amansharma0091.github.io/games-app-react",
   "dependencies": {
     "font-awesome": "^4.7.0",
     "humps": "^2.0.1",
@@ -25,6 +26,8 @@
     "react-scripts": "1.0.10"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "PORT=3006 BROWSER=none react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
