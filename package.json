@@ -4,6 +4,7 @@
   "private": false,
   "homepage": "https:/amansharma0091.github.io/games-app-react",
   "dependencies": {
+    "bulma": "^0.4.2",
     "font-awesome": "^4.7.0",
     "humps": "^2.0.1",
     "jwt-decode": "^2.2.0",
