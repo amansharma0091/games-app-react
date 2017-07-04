@@ -11,13 +11,13 @@ export class GamesListTabs extends React.Component{
         </div>
         <ul>
           <li>Sort By</li>
-          <li className="active"><a><span  className="sort-anchor">Score</span>
+          <li className="active" onClick={this.props.sortByScore}><a><span  className="sort-anchor">Score</span>
               <i className="fa fa-arrow-down"></i></a>
           </li>
-          <li><a><span  className="sort-anchor">Score</span>
+          <li><a><span  className="sort-anchor" onClick={this.props.sortByName}>Name</span>
               <i className="fa fa-arrow-down"></i></a>
           </li>
-          <li><a><span  className="sort-anchor">Score</span>
+          <li><a><span  className="sort-anchor" onClick={this.props.sortByPlatform}>Platform</span>
               <i className="fa fa-arrow-down"></i></a>
           </li>
         </ul>

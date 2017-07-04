@@ -6,3 +6,15 @@ export const LOGOUT_USER = "LOGOUT_USER";
 export const  RECEIVE_GAMES_REQUEST = "RECEIVE_GAMES_REQUEST"
 export const  RECEIVE_GAMES_SUCCESS = "RECEIVE_GAMES_SUCCESS"
 export const  RECEIVE_GAMES_FAILURE = "RECEIVE_GAMES_FAILURE"
+
+
+export const  SortType = {
+	score : "score",
+	name : "name",
+	platform : "platform"
+}
+
+export const SortOrder = {
+	desc : "desc",
+	asc	: "asc"
+}
