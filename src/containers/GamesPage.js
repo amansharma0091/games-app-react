@@ -102,7 +102,8 @@ class GamesPage extends Component {
     return(
       <div className="container" style={{"marginTop":"0px !important"}}>
         <Nav />
-        <GamesListTabs sortByScore={this.sortByScore} sortByPlatform={this.sortByPlatform} sortByName={this.sortByName} />
+        <GamesListTabs sortBy={this.state.sortBy} sortByScore={this.sortByScore}
+           sortByPlatform={this.sortByPlatform} sortByName={this.sortByName} />
         <GamesList games={this.state.gems}/>
       </div>
     )
