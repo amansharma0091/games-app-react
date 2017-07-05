@@ -7,8 +7,6 @@ import { CALL_API, Schemas } from '../middleware/api'
 
 import { 
         LOGIN_USER_REQUEST, LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS, LOGOUT_USER,
-        RECEIVE_GAMES_REQUEST, RECEIVE_GAMES_SUCCESS, RECEIVE_GAMES_FAILURE,
-        DISCOVERIES_REQUEST, DISCOVERIES_SUCCESS, DISCOVERIES_FAILURE,
         DATA_REQUEST, DATA_SUCCESS, DATA_FAILURE
        } 
 from '../constants';
@@ -73,7 +71,6 @@ export function loginUser(username, password, redirect="/") {
             .then(parseJSON)
             .then(response => {
                 try {
-                    let decoded = jwtDecode(response.token);
                     dispatch(loginUserSuccess(response.token));
                     browserHistory.push(redirect);
                 } catch (e) {
