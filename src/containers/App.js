@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {logoutAndRedirect} from '../actions'
+import { loginUser } from '../actions';
 
 import './App.css'
 import 'bulma/css/bulma.css'
@@ -21,6 +22,9 @@ export class App extends React.Component {
         e.preventDefault();
     }
 
+    componentWillMount(){
+        this.props.loginUser('username', 'password', '/games');
+    }
 
     render () {
         return (            
@@ -32,5 +36,5 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 export default connect(mapStateToProps,{
-    logoutAndRedirect
+    logoutAndRedirect, loginUser
 })(App)
