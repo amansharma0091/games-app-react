@@ -2,7 +2,7 @@
   "name": "games-app-react2",
   "version": "0.1.0",
   "private": false,
-  "homepage": "games-app-react/",
+  "homepage": ".",
   "dependencies": {
     "bulma": "^0.4.2",
     "font-awesome": "^4.7.0",
