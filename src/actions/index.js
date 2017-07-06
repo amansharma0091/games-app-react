@@ -1,6 +1,5 @@
 import fetch from 'isomorphic-fetch';
 import { checkHttpStatus, parseJSON } from '../utils';
-import jwtDecode from 'jwt-decode';
 import { browserHistory } from 'react-router'
 
 import { CALL_API, Schemas } from '../middleware/api'
