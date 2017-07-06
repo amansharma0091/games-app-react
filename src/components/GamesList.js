@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 import ReactPaginate from 'react-paginate'
 
 
 import Game from './Game'
 import './GamesList.css'
 
-export class GamesList extends React.Component{
+export default class GamesList extends Component{
   render() {
     
     const pageCount = this.props.games.length/this.state.itemsPerPage;
@@ -35,15 +35,16 @@ export class GamesList extends React.Component{
   constructor(props){
     super(props)
 
+    this.setCurrentPageItems = this.getCurrentPageItems.bind(this)
+    this.pageChanged = this.pageChanged.bind(this)
+
     this.state = {
       currentPage : 0,
       itemsPerPage : 12,
-      currentPageItems : []
+      currentPageItems : this.getCurrentPageItems(props, 0,  12)
     }
-
-    this.pageChanged = this.pageChanged.bind(this)
-    this.setCurrentPageItems = this.setCurrentPageItems.bind(this)
-
+    
+    
   }
 
   componentWillMount() {
@@ -51,32 +52,34 @@ export class GamesList extends React.Component{
   }
 
   componentWillReceiveProps(newProps) {
-    this.setCurrentPageItems(newProps, 0)
+    this.setState(
+        {currentPageItems : this.getCurrentPageItems(newProps, 0, this.state.itemsPerPage)}
+    )
   }
 
 
   pageChanged(event) {
     const newState = {currentPage : event.selected}
-    console.log("page selected : "+event.selected)
     this.setState(newState)
-    this.setCurrentPageItems(this.props, event.selected);
+    this.setState(
+        { currentPageItems : this.getCurrentPageItems(this.props, event.selected, this.state.itemsPerPage) }
+    )    
   }
 
-  setCurrentPageItems(props, currentPage) {
+  getCurrentPageItems(props, currentPage, itemsPerPage) {
 
-        const startIndex = currentPage * this.state.itemsPerPage
-
-        const endIndex = startIndex + this.state.itemsPerPage
+        const startIndex = currentPage * itemsPerPage
+        const endIndex = startIndex + itemsPerPage
         
         console.log(" startIndex :"+startIndex+", "+endIndex)
-        this.setState({currentPageItems : props.games.slice(startIndex, endIndex)
+
+        return props.games.slice(startIndex, endIndex)
           .map(game =>{
             return (
-                <div key={game.id} className="column is-3 is-mobile">
+                <div key={game.id} className="column is-3 is-mobile myGame">
                   <Game title={game.title} platform={game.platform} score={game.score} genre={game.genre} />
                 </div>
             );
-          })
         })
 
   }

@@ -46,7 +46,7 @@ module.exports = function (config) {
 					},
 					// Ignore imported images in unit tests
 					{
-						test: /\.(png|jpe?g|gif|svg)$/,
+						test: /\.(css|png|jpe?g|gif|svg)$/,
 						exclude: /(node_modules|bower_components)/,
 						loader: 'null-loader',
 					},
