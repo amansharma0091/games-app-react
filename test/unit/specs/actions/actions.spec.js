@@ -17,6 +17,7 @@ function loginSuccess(){
 	    }
 	}
 }
+
 beforeAll(()=>{
 	store = mockStore(initialState)
 
@@ -31,7 +32,7 @@ beforeAll(()=>{
 
 })
 
-describe('actions', ()=>{
+describe('Actions', ()=>{
 	it('loginUser work for defaults', ()=>{
 		store.dispatch(loginUser('username','password'))
 			.then(()=>{

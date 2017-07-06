@@ -1,14 +1,17 @@
 export const initialState = {
-  pkg: {
-    entity: {}
+  auth:{
+    token: null,
+    userName: null,
+    isAuthenticated: false,
+    isAuthenticating: false,
+    statusText: null
   },
-  packages: {
-    entities: []
-  },
-  ui: {
-    fetching: {
-      pkg: true,
-      packages: true
+  data:{
+    isFetching: false,
+    isFailure: false,
+    data: {
+        games : [],
+        discoveries : []
     }
   }
-}
+};
