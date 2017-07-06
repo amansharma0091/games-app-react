@@ -5,6 +5,7 @@ module.exports = function (config) {
 	config.set({
 		browsers: ['PhantomJS'],
 		files: [
+			'node_modules/babel-polyfill/dist/polyfill.js',
 			'node_modules/phantomjs-function-bind-polyfill/index.js',
 			'node_modules/phantomjs-polyfill-includes/includes-polyfill.js',
 			'node_modules/babel-es6-polyfill/browser-polyfill.js',
@@ -56,7 +57,8 @@ module.exports = function (config) {
 				'cheerio': 'window',
 				'react/addons': true,
 				'react/lib/ExecutionEnvironment': true,
-				'react/lib/ReactContext': true
+				'react/lib/ReactContext': true,
+				'fs': '{}'
 			}
 		},
 		webpackMiddleware: {
