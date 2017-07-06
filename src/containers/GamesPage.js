@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { Nav } from '../components/Nav'
-import { GamesList } from '../components/GamesList'
+import GamesList from '../components/GamesList'
 import { GamesListTabs } from '../components/GamesListTabs'
 
 import { loadGames, loadDiscoveries } from '../actions'
