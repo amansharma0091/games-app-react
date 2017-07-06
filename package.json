@@ -68,7 +68,7 @@
     "deploy": "gh-pages -d build",
     "start": "PORT=3006 BROWSER=none react-scripts start",
     "build": "react-scripts build",
-    "test": "karma start",
+    "test": "karma start --single-run",
     "eject": "react-scripts eject"
   }
 }
