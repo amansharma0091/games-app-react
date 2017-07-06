@@ -1,0 +1,33 @@
+App.js
+	- Assert GamePage is rendered on load
+
+
+GamesPage
+	- Assert Nav, GameListTabs, GamesList are
+		rendered
+
+Nav
+	- Check logic of Nav discover autocomplete
+
+GameListTabs
+	- Check logic for sort buttons
+	- Check title filter is working
+
+GamesList
+	- Check logic of pagination
+	
+Game	
+	- Check game text is right
+
+
+'karma-jasmine',
+			'karma-sourcemap-loader',
+			'karma-mocha-reporter',
+			'karma-spec-reporter',
+			'karma-coverage',
+			'istanbul-instrumenter-loader',
+		],
+		preprocessors: {
+			'test/unit/setup/tests.bundle.js': ['webpack', 'sourcemap']
+		},
+		reporters: ['spec'],

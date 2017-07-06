@@ -56,7 +56,6 @@ export function logoutAndRedirect() {
 }
 
 export function loginUser(username, password, redirect="/") {
-  console.log(username+","+password)
     return function(dispatch) {
         dispatch(loginUserRequest());
         return fetch(`${baseUrl}/auth`, {
