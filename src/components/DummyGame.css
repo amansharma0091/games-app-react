@@ -1,0 +1,58 @@
+.animated{
+	background: #f6f7f8;
+    background: -moz-linear-gradient(right,#eee 8%,#ddd 18%,#eee 33%);
+    background: -webkit-linear-gradient(right,#eee 8%,#ddd 18%,#eee 33%);
+    background: -o-linear-gradient(right,#eee 8%,#ddd 18%,#eee 33%);
+    background: -ms-linear-gradient(right,#eee 8%,#ddd 18%,#eee 33%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ddd 8%,endColorstr=#ddd 18%);
+
+    animation-duration: 2s;
+    animation-fill-mode: none;
+    animation-iteration-count: infinite;
+    animation-name: dummyAnimate;
+    animation-timing-function: cubic-bezier(0.46, 0.03, 0.52, 0.96);
+
+    background-size: 1000px 104px;
+}
+.dummy-sub-title{
+	height:30px;
+	margin-top:5px;
+}
+.dummy-title{
+	height:70px;
+}
+.dummy-genre{
+    height: 20px;
+    margin-top: 10px;
+}
+.dummy-score{
+    height: 20px;
+    margin-top: 10px;
+}
+
+@-moz-keyframes dummyAnimate {
+    0% {
+        background-position: -468px 0
+    }
+    100 % {
+        background-position: 468px 0
+    }
+}
+
+@-webkit-keyframes dummyAnimate {
+    0% {
+        background-position: -468px 0
+    }
+    100% {
+        background-position: 468px 0
+    }
+}
+
+@-o-keyframes dummyAnimate {
+    0% {
+        background-position: -468px 0
+    }
+    100% {
+        background-position: 468px 0
+    }
+}

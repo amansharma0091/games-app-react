@@ -66,7 +66,7 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "CI='' PORT=3006 BROWSER=none react-scripts start",
+    "start": "PORT=3006 BROWSER=none CI='' react-scripts start",
     "build": "react-scripts build",
     "test": "karma start --single-run",
     "eject": "react-scripts eject"
