@@ -6,7 +6,8 @@ import { CALL_API, Schemas } from '../middleware/api'
 
 import { 
         LOGIN_USER_REQUEST, LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS, LOGOUT_USER,
-        DATA_REQUEST, DATA_SUCCESS, DATA_FAILURE
+        DATA_REQUEST, DATA_SUCCESS, DATA_FAILURE,
+        RESIZE_APP
        } 
 from '../constants';
 
@@ -114,4 +115,14 @@ const fetchDiscoveries = (keyword, token) =>({
 
 export const loadDiscoveries = (keyword, token) => (dispatch, getState) => {
   return dispatch(fetchDiscoveries(keyword, token))
+}
+
+function updateSize(){
+  return {
+    type: RESIZE_APP
+  }
+}
+export const resizeApp = () => (dispatch, getState) => {
+  console.log('resizing'+window.innerWidth);
+  dispatch(updateSize());
 }

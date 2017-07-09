@@ -57,10 +57,20 @@ class GamesPage extends Component {
 
     return(
       <div className="container" style={{"marginTop":"0px !important"}}>
-        <Nav discoverQuery={this.discoverQuery} discoveries={this.state.discoveries}/>
-        <GamesListTabs sortBy={this.state.sortBy} sortByScore={this.sortByScore}
-           sortByPlatform={this.sortByPlatform} sortByName={this.sortByName} filterGems={this.filterGems}/>
-        <GamesList games={this.state.gems}/>
+        <Nav 
+          discoverQuery={this.discoverQuery}
+          discoveries={this.state.discoveries}
+          isMobile={this.props.isMobile}
+        />
+        <GamesListTabs 
+            sortBy={this.state.sortBy} 
+            sortByScore={this.sortByScore}
+            sortByPlatform={this.sortByPlatform}
+            sortByName={this.sortByName}
+            filterGems={this.filterGems} 
+            isMobile={this.props.isMobile}
+        />
+        <GamesList games={this.state.gems} isMobile={this.props.isMobile} />
       </div>
     )
       
@@ -154,7 +164,8 @@ function mapStateToProps(state){
     isFailure   : state.data.isFailure,
     isFetching  : state.data.isFetching,
     data        : state.data.data,
-    token       : state.auth.token
+    token       : state.auth.token,
+    isMobile    : state.app.isMobile
   }
 
 }

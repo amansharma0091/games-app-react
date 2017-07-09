@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {logoutAndRedirect} from '../actions'
-import { loginUser } from '../actions';
+import { loginUser, resizeApp } from '../actions';
 
 import './App.css'
 import 'bulma/css/bulma.css'
@@ -13,7 +13,6 @@ export class App extends React.Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool,
         logoutAndRedirect: PropTypes.func.isRequired,
-
         children: PropTypes.node
     }
 
@@ -24,6 +23,15 @@ export class App extends React.Component {
 
     componentWillMount(){
         this.props.loginUser('username', 'password', '/games');
+        window.addEventListener('resize', this.handleWindowSizeChange)
+    }
+
+    componentWillUnmount() {
+      window.removeEventListener('resize', this.handleWindowSizeChange);
+    }
+
+    handleWindowSizeChange = () => {
+        this.props.resizeApp();
     }
 
     render () {
@@ -33,8 +41,9 @@ export class App extends React.Component {
     }
 }
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  width: state.app.width
 });
 export default connect(mapStateToProps,{
-    logoutAndRedirect, loginUser
+    logoutAndRedirect, loginUser, resizeApp
 })(App)

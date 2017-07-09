@@ -21,3 +21,13 @@
 .pagination .active a{
 	color:black;
 }
+@media only screen and (max-width: 500px) {
+    .game{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .body{
+        height:auto;
+        overflow-y: scroll;
+    }
+}
