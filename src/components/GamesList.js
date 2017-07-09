@@ -83,8 +83,8 @@ export default class GamesList extends Component {
     }
 
     getDummyPageItems(){
-      return [1,2,3,4,5,6,7,8,9,10,11,12].
-              map(i =>{
+      return [1,2,3,4,5,6,7,8,9,10,11,12]
+              .map(i =>{
                 return(
                   <div key={i} className="column is-3 is-mobile game">
                       <DummyGame />

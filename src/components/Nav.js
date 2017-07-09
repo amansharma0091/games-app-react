@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Typeahead } from 'react-typeahead'
-import NavWeb from './NavWeb'
+//import NavWeb from './NavWeb'
 import NavMobile from './NavMobile'
 import './Nav.css'
 

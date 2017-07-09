@@ -1,43 +1,55 @@
-.nav{
-  background-color: transparent !important;
+.nav {
+    background-color: transparent !important;
 }
 
-.input:focus, .input.is-focused, .input:active, .input.is-active, .textarea:focus, .textarea.is-focused, .textarea:active, .textarea.is-active {
+.input:focus,
+.input.is-focused,
+.input:active,
+.input.is-active,
+.textarea:focus,
+.textarea.is-focused,
+.textarea:active,
+.textarea.is-active {
     border-color: transparent !important;
 }
 
-
-.hidden{
-  display:none !important;
+.hidden {
+    display: none !important;
 }
+
+
 /*-------------------------------------------------*/
 
-.box{
-  word-wrap: break-word !important;
-}
-.input{
-  text-shadow: none !important;
-}
-.pagination-previous, .pagination-next{
-  background : white;
-  color:black;
-}
-.login input{
-	background: none !important;
-	margin-bottom: 5px !important;
-	margin-top: 5px !important;
-}
-.login *{
-	color:black !important;
-}
-.login .btn{
-	margin-top: 20px;
-	box-shadow : none;
+.box {
+    word-wrap: break-word !important;
 }
 
-@media only screen and (max-width: 500px) {
-    body{
-        height:auto;
-        overflow-y: scroll;
-    }
+.input {
+    text-shadow: none !important;
+}
+
+.pagination-previous,
+.pagination-next {
+    background: white;
+    color: black;
+}
+
+.login input {
+    background: none !important;
+    margin-bottom: 5px !important;
+    margin-top: 5px !important;
+}
+
+.login * {
+    color: black !important;
+}
+
+.login .btn {
+    margin-top: 20px;
+    box-shadow: none;
+}
+
+body {
+    height: auto;
+    overflow-y: scroll;
 }

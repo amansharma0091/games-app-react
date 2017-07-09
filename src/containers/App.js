@@ -11,7 +11,6 @@ import 'font-awesome/css/font-awesome.min.css'
 export class App extends React.Component {
 
     static propTypes = {
-        isAuthenticated: PropTypes.bool,
         logoutAndRedirect: PropTypes.func.isRequired,
         children: PropTypes.node
     }
@@ -22,8 +21,11 @@ export class App extends React.Component {
     }
 
     componentWillMount(){
-        this.props.loginUser('username', 'password', '/games');
         window.addEventListener('resize', this.handleWindowSizeChange)
+    }
+
+    componentDidMount(){
+        this.props.loginUser('username', 'password', '/games');
     }
 
     componentWillUnmount() {
@@ -41,7 +43,6 @@ export class App extends React.Component {
     }
 }
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
   width: state.app.width
 });
 export default connect(mapStateToProps,{
